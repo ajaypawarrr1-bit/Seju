@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Seju ❤️</title>
+
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  background: pink;
+  padding-top:50px;
+}
+
+img{
+  width:200px;
+  border-radius:20px;
+  margin:20px;
+}
+
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  margin:10px;
+  cursor:pointer;
+}
+
+.yes{background:red;color:white;}
+.no{background:white;color:red;border:2px solid red;}
+</style>
+</head>
+
+<body>
+
+<div id="content"></div>
+
+<script>
+
+let step = 0;
+let noCount = 0;
+
+function nextStep(choice){
+
+  const content = document.getElementById("content");
+
+  // STEP 0
+  if(step === 0){
+    content.innerHTML = `
+      <h1>Hii Seju ❤️</h1>
+      <img src="yourphoto.jpg">
+      <br>
+      <button class="yes" onclick="nextStep('yes')">Haa Ji</button>
+    `;
+    step++;
+  }
+
+  // STEP 1
+  else if(step === 1){
+    content.innerHTML = `
+      <h2>Tumhe ek baat bataun... agar tum bura mano to?</h2>
+      <button class="yes" onclick="nextStep('yes')">Ha bilkul bi</button>
+    `;
+    step++;
+  }
+
+  // STEP 2
+  else if(step === 2){
+    content.innerHTML = `
+      <h2>I really like you ❤️<br>Do you like me?</h2>
+      <button class="yes" onclick="nextStep('yes')">Haa</button>
+      <button class="no" onclick="nextStep('no')">Nahi</button>
+    `;
+    step++;
+  }
+
+  // STEP 3 (YES path)
+  else if(step === 3 && choice === 'yes'){
+    content.innerHTML = `
+      <h1>I Love You Seju ❤️</h1>
+      <img src="yourphoto.jpg">
+    `;
+  }
+
+  // STEP 3 (NO path)
+  else if(step === 3 && choice === 'no'){
+    noCount++;
+    showNoFlow();
+  }
+
+}
+
+// NO FLOW FUNCTION
+function showNoFlow(){
+  const content = document.getElementById("content");
+
+  if(noCount === 1){
+    content.innerHTML = `
+      <h2>Sach me? 😔</h2>
+      <button class="no" onclick="showNoFlow()">Nahi</button>
+    `;
+  }
+
+  else if(noCount === 2){
+    content.innerHTML = `
+      <h2>Soch lo 💔</h2>
+      <button class="no" onclick="showNoFlow()">Nahi</button>
+    `;
+  }
+
+  else if(noCount === 3){
+    content.innerHTML = `
+      <h2>Please maan ja yarr 🥺</h2>
+      <button class="no" onclick="showNoFlow()">Nahi</button>
+    `;
+  }
+
+  else{
+    content.innerHTML = `
+      <h2>Sorry I behave like this... Goodbye 💔</h2>
+    `;
+  }
+}
+
+// START
+nextStep();
+
+</script>
+
+</body>
+</html>
